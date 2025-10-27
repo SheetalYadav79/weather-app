@@ -6,12 +6,6 @@ pipeline {
   }
 
   stages {
-    stage('Clone') {
-      steps {
-        git 'https://github.com/SheetalYadav79/weather-app.git'
-      }
-    }
-
     stage('Build Docker Image') {
       steps {
         script {
