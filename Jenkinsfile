@@ -17,7 +17,7 @@ pipeline {
     stage('Push to Docker Hub') {
       steps {
         script {
-          docker.withRegistry('', 'docker-hub-creds') {
+          docker.withRegistry('', 'dockerhub-creds') {
             docker.image(IMAGE_NAME).push()
           }
         }
