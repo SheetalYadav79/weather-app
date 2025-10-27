@@ -25,10 +25,13 @@ pipeline {
     }
 
     stage('Deploy Locally') {
-      steps {
-        bat 'docker rm -f static-weather || exit 0'
-        bat 'docker run -d --name static-weather -p 8000:8000 sheetal79/static-weather-app'
-      }
+        steps {
+            bat '''
+                FOR /F "tokens=1" %%i IN ('docker ps -q --filter "publish=8000"') DO docker rm -f %%i
+                docker run -d --name static-weather -p 8000:8000 sheetal79/static-weather-app
+                '''
+        }
     }
+
   }
 }
