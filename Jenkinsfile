@@ -26,8 +26,8 @@ pipeline {
 
     stage('Deploy Locally') {
       steps {
-        sh 'docker rm -f static-weather || true'
-        sh 'docker run -d --name static-weather -p 8000:8000 ' + IMAGE_NAME
+        bat 'docker rm -f static-weather || exit 0'
+        bat 'docker run -d --name static-weather -p 8000:8000 sheetal79/static-weather-app'
       }
     }
   }
